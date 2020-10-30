@@ -1,0 +1,93 @@
+---
+title: "An strange article about a template with a very bad title"
+author:
+- name: Jane Doe
+  affiliation: Some University
+abstract: "This document serves as a template that you can reuse with your own projects.  The goal is to illustrate some of the functionalities of R, LaTeX, and Rmarkdown to conduct end-to-end academic research projects. You will also use this template for some of the course assignments and also to do your research project. There are many different moving pieces when you use this document for the first time. Don't worry if you don't understand everything yet."
+keywords: "GitHub, LaTex, R, Rmarkdown, RStudio"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+bibliography: references.bib
+biblio-style: apsr
+
+geometry: margin=1in
+fontfamily: mathpazo
+fontsize: 11pt
+endnote: no
+output:
+  pdf_document:
+    citation_package: natbib
+    keep_tex: true
+    fig_caption: true
+    latex_engine: pdflatex
+    template: latex-template.tex
+header-includes:
+  -  \usepackage{hyperref}
+# spacing: double
+---
+
+```{r setup, include=FALSE}
+# Compiling options
+knitr::opts_chunk$set(cache=TRUE,
+                      message=FALSE, warning=FALSE,
+                      fig.path='figs/',
+                      cache.path = '_cache/',
+                      fig.process = function(x) {
+                      x2 = sub('-\\d+([.][a-z]+)$', '\\1', x)
+                      if (file.rename(x, x2)) x2 else x
+                      })
+```
+
+
+# Introduction
+
+Theories of political disagreement often envisage ideology as a single, latent dimension that structures politics on a continuum between left and right [@downs1957economic]. `r lorem::ipsum(5, avg_words_per_sentence = 20)`
+
+## Existing work
+
+## Research question
+
+This is some random text.
+
+$H_1$: Given what we know, we expect something to happen.
+
+$H_2$: We might expect another thing to happen.
+
+$H_3$: ...
+
+# Data and Methods
+
+# Results
+
+# Conclusion and Discussion
+
+Can we also use footnotes [^one_footnote] in Rmarkdown? Well, yes and here's another one.[^another_footnote]
+
+[^one_footnote]: I really hope that you noticed this footnote.
+[^another_footnote]: Some extra random text, just to make sure you see these little footnotes.
+
+What about citations and references?
+
+```{markdown}
+
+- Find your biblatexkey in your `refernces.bib` file.
+- Put an @ before it, like @downs1957economic, or whatever it is.
+- @downs1957economic creates an in-text citation (e.g. Downs (1957) says...)
+- [@downs1957economic] creates a parenthetical citation (Downs, 1957)
+
+```
+
+
+
+```{r, echo=FALSE, eval=TRUE, tidy = TRUE, size="small", cache=FALSE, results="asis", message=F, warning=F}
+library(stargazer)
+stargazer(lm(speed~dist, data=cars), title="A Handsome Table", header=FALSE)
+```
+
+<!--
+# References
+\setlength{\parindent}{-0.2in}
+\setlength{\leftskip}{0.2in}
+\setlength{\parskip}{8pt}
+\vspace*{-0.2in}
+\noindent
+-->
