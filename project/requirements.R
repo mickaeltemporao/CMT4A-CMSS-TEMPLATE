@@ -7,7 +7,7 @@ cran_requirements <- c(
 
 )
 
-github_cran_requirements <- c(
+github_requirements <- c(
   "gadenbuie/lorem",
   "jamesmartherus/anesr"
 )
@@ -18,5 +18,5 @@ to_install   <- setdiff(cran_requirements, current_libs$Package)
 
 # Download and install the remaining packages
 install.packages(to_install, repos = "https://cran.biotools.fr/")
-devtools::install_github(github_cran_requirements)
+devtools::install_github(github_requirements)
 
