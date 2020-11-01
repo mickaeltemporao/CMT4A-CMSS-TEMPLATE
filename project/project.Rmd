@@ -28,7 +28,6 @@ header-includes:
 ```{r setup, include=FALSE}
 # Setup and Compiling Options
 set.seed(42)
-source("requirements.R")
 knitr::opts_chunk$set(fig.path='figs/',
                       message=FALSE, warning=FALSE, cache=FALSE,
                       fig.process = function(x) {
@@ -60,6 +59,7 @@ Theories of political disagreement often envisage ideology as a single, latent d
 Not only you can have figures but you can also add footnotes [^one_footnote] in Rmarkdown. Here's another one.[^another_footnote] `r lorem::ipsum(1, avg_words_per_sentence = 20)`
 
 ```{r, eval=TRUE, echo=FALSE, size="small", fig.cap="A Figure That Needs a Better Title", out.width="75%", fig.align="center"}
+library(tidyverse)
 library(anesr)
 data(timeseries_2016)
 
