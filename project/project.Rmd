@@ -27,6 +27,7 @@ header-includes:
 
 ```{r setup, include=FALSE}
 # Compiling options
+set.seed(42)
 knitr::opts_chunk$set(cache=TRUE,
                       message=FALSE, warning=FALSE,
                       fig.path='figs/',
@@ -40,13 +41,56 @@ knitr::opts_chunk$set(cache=TRUE,
 
 # Introduction
 
-Theories of political disagreement often envisage ideology as a single, latent dimension that structures politics on a continuum between left and right [@downs1957economic]. `r lorem::ipsum(5, avg_words_per_sentence = 20)`
+Theories of political disagreement often envisage ideology as a single, latent dimension that structures politics on a continuum between left and right [@downs1957economic]. `r lorem::ipsum(2, avg_words_per_sentence = 15)`
+
+## How do we make citations and automate reference lists in RMarkdown documents ?
+
+```{markdown}
+- Add your reference(s) to a `refernces.bib` file.
+- Find the bib key in your `refernces.bib` file.
+- Put an @ before the bib key (e.g. @downs1957economic)
+- @downs1957economic creates an in-text citation (e.g. Downs (1957) says...)
+- [@downs1957economic] creates a parenthetical citation (Downs, 1957)
+```
+
+`r lorem::ipsum(2, avg_words_per_sentence = 15)`
+
 
 ## Existing work
 
+Not only you can have figures but you can also add footnotes [^one_footnote] in Rmarkdown. Here's another one.[^another_footnote] `r lorem::ipsum(1, avg_words_per_sentence = 20)`
+
+```{r, eval=TRUE, echo=FALSE, cache=FALSE, size="small", fig.cap="A Figure That Needs a Better Title", out.width="75%", fig.align="center", message=F, warning=F}
+library(anesr)
+data(timeseries_2016)
+
+timeseries_2016 %>%
+  filter(between(V162034a, 1, 4)) %>%
+  ggplot(aes(x=as.numeric(V162034a), y = ..prop..*100, fill=as.factor(..x..))) +
+  geom_bar(alpha=.5) +
+  geom_text(
+    aes(label=scales::percent(..prop..), y=..prop..*100), stat="count", vjust = -.5
+  ) +
+  ylab("Percentage (%)") +
+  xlab("Candidates") +
+  theme_minimal() +
+  theme(legend.position="none") +
+  scale_x_discrete(
+    limits=c("1"="H. Clinton", "2"="D. Trump", "3"="G. Johnson", "4"="J. Stein")
+  ) +
+  scale_fill_brewer(limits=c("2", "1", "4", "3"), palette="Set1")
+
+```
+
+`r lorem::ipsum(1, avg_words_per_sentence = 20)`
+
+[^one_footnote]: I really hope that you noticed this footnote.
+[^another_footnote]: Some extra random text, just to make sure you see these little footnotes.
+
+
 ## Research question
 
-This is some random text.
+The filler text above and below should somehow lead to a research question and illustrate why it matters. The question needs to be clearly stated. At the end of this section you emphasize you hypotheses. `r lorem::ipsum(1, avg_words_per_sentence = 16)`
 
 $H_1$: Given what we know, we expect something to happen.
 
@@ -56,32 +100,175 @@ $H_3$: ...
 
 # Data and Methods
 
+By the way, did you notice that we are using real data from the American National Election  Study[^anes]. `r lorem::ipsum(1, avg_words_per_sentence = 19)`
+
+[^anes]: https://electionstudies.org/data-center/2016-time-series-study/
+
+```{r, eval=TRUE, echo=FALSE, cache=FALSE, size="small", fig.cap="Another Figure That Should Get a Better Title", out.width="75%", fig.align="center", message=F, warning=F}
+
+tmp_df <- timeseries_2016 %>%
+  select(V161126, V161181, V161184, V161178) %>%
+  filter(
+    between(V161126, 1, 7),
+    between(V161181, 1, 7),
+    between(V161184, 1, 7),
+    between(V161178, 1, 7)
+  ) %>%
+  rename(
+    "Ideology"="V161126",
+    "Defense"="V161181",
+    "Healthcare"="V161184",
+    "Government"="V161178"
+  ) %>%
+  gather(key, value)
+
+ggplot(tmp_df, aes(x=value, y=..prop.., group=key)) +
+  geom_bar(alpha=.5) +
+  facet_wrap(~key) +
+  ylab("Percentage (%)") +
+  xlab("These labels need to be fixed...") +
+  theme_minimal() +
+  theme(legend.position="none")
+
+```
+
+Here are some variables that we could use to build interesting features. `r lorem::ipsum(1)`
+
+```{r, eval=TRUE, echo=FALSE, cache=FALSE, size="small", fig.cap="Another Figure That Should Get a Better Title", out.width="75%", fig.align="center", message=F, warning=F}
+
+tmp_df <- timeseries_2016 %>%
+  select(V161031, V161086, V161087) %>%
+  rename(
+    "vote_intent"="V161031",
+    "ft_democrat"="V161086",
+    "ft_republican"="V161087"
+  ) %>%
+  filter(
+    between(vote_intent, 1,4),
+    ft_democrat>=0,
+    ft_republican>=0
+  )
+
+tmp_df %>%
+  ggplot(
+    aes(x=as.numeric(ft_republican), y=as.numeric(ft_democrat), color=as.factor(vote_intent))
+  ) +
+  geom_point() +
+  geom_smooth(se=FALSE, size=2, color="grey", alpha=.8) +
+  ylab("Democrat Feeling Thermometer") +
+  xlab("Republican Feeling Thermometer") +
+  scale_color_brewer(
+    limits=c("2", "1", "4", "3"),
+    palette="Set1",
+    labels=c("D. Trump", "H. Clinton", "J. Stein", "G. Johnson"),
+    name='Change Me'
+  ) +
+  theme_minimal()
+
+```
+
+`r lorem::ipsum(2, avg_words_per_sentence = 20)`
+
 # Results
+
+Well, here are some fitted models. Are these any good?
+`r lorem::ipsum(3, avg_words_per_sentence = 15)`
+
+```{r, echo=FALSE, eval=TRUE, tidy = TRUE, size="small", cache=FALSE, results="asis", out.width="75%", fig.align="center", message=F, warning=F}
+
+library(stargazer)
+
+tmp_df <- timeseries_2016 %>%
+  select(
+    V161031,  # vote_intent
+    V161086,  # ft_democrat
+    V161087,  # ft_republican
+    V161126,  # ideology
+    V161181,  # defense
+    V161184,  # healthcare
+    V161178,  # government
+    V161155   # party_id
+  ) %>%
+  rename(
+    "vote_intent"="V161031",
+    "ft_democrat"="V161086",
+    "ft_republican"="V161087",
+    "ideology"="V161126",
+    "defense"="V161181",
+    "healthcare"="V161184",
+    "government"="V161178",
+    "party_id"="V161155"
+  ) %>%
+  filter(
+    between(vote_intent, 1,2),
+    ft_democrat>=0,
+    ft_republican>=0,
+    between(ideology, 1,7),
+    between(defense, 1,7),
+    between(healthcare, 1,7),
+    between(government, 1,7),
+    between(party_id, 1,3)
+  ) %>%
+  mutate(
+    trump_int = if_else(vote_intent==2, 1, 0),
+    ft_diff = as.numeric(ft_republican-ft_democrat),
+    party_id = as.factor(party_id),
+    ideology = as.numeric(ideology),
+    defense = as.numeric(defense),
+    healthcare = as.numeric(healthcare),
+    government = as.numeric(government),
+  )
+
+model_1 <- trump_int ~ ft_diff + party_id
+model_2 <- trump_int ~ ft_diff + party_id + ideology
+model_3 <- trump_int ~ ft_diff + party_id + ideology + defense + healthcare + government
+
+fit_1 <- glm(model_1, data=tmp_df,family=binomial())
+fit_2 <- glm(model_2, data=tmp_df,family=binomial())
+fit_3 <- glm(model_3, data=tmp_df,family=binomial())
+
+stargazer(
+  fit_1, fit_2, fit_3,
+  title="A Handsome Model Summary Table",
+  header=FALSE,
+  single.row = TRUE
+)
+
+```
+
+`r lorem::ipsum(1, avg_words_per_sentence = 20)`
+
+# Application
+
+The first model as an accuracy of `r round(accuracy*100, 3)`%. Is it any good? Or is it bad? Why? `r lorem::ipsum(2, avg_words_per_sentence = 14)`
+
+```{r, eval=TRUE, echo=FALSE, cache=FALSE, size="small", fig.cap="What's wrong with this figure?", message=F, warning=F}
+
+plot_df <- tibble(trump_int = tmp_df$trump_int, predicted_prob = predict(fit_1, tmp_df, type="resp"))
+
+ggplot(plot_df, aes(x=predicted_prob, y=trump_int)) +
+  geom_jitter(width=0.025, height=.2, shape=1) +
+  geom_smooth(method="glm", method.args=list(family="binomial"), fullrange=TRUE, color="red") +
+  ylab("Voting Intention for Trump") +
+  scale_y_continuous(breaks=c(0,1)) +
+  scale_x_continuous(breaks=c(0,1)) +
+  xlab("Predicted Probability") +
+  theme_minimal()
+```
+
+`r lorem::ipsum(1, avg_words_per_sentence = 15)`
 
 # Conclusion and Discussion
 
-Can we also use footnotes [^one_footnote] in Rmarkdown? Well, yes and here's another one.[^another_footnote]
+```{r, echo=FALSE, eval=TRUE, message=F, warning=F}
 
-[^one_footnote]: I really hope that you noticed this footnote.
-[^another_footnote]: Some extra random text, just to make sure you see these little footnotes.
-
-What about citations and references?
-
-```{markdown}
-
-- Find your biblatexkey in your `refernces.bib` file.
-- Put an @ before it, like @downs1957economic, or whatever it is.
-- @downs1957economic creates an in-text citation (e.g. Downs (1957) says...)
-- [@downs1957economic] creates a parenthetical citation (Downs, 1957)
+predictions <- predict(fit_1, tmp_df, type = 'response')
+conf_matrix <- table(tmp_df$trump_int, predictions> 0.5)
+accuracy <- sum(diag(conf_matrix)) / sum(conf_matrix)
 
 ```
 
-
-
-```{r, echo=FALSE, eval=TRUE, tidy = TRUE, size="small", cache=FALSE, results="asis", message=F, warning=F}
-library(stargazer)
-stargazer(lm(speed~dist, data=cars), title="A Handsome Table", header=FALSE)
-```
+`r lorem::ipsum(5, avg_words_per_sentence = 16)`
 
 <!--
 # References
