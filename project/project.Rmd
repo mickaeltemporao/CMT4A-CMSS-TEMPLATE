@@ -16,7 +16,7 @@ endnote: no
 output:
   pdf_document:
     citation_package: natbib
-    keep_tex: true
+    keep_tex: false
     fig_caption: true
     latex_engine: pdflatex
     template: latex-template.tex
@@ -26,13 +26,11 @@ header-includes:
 ---
 
 ```{r setup, include=FALSE}
-# Compiling options
+# Setup and Compiling Options
 set.seed(42)
 source("requirements.R")
-knitr::opts_chunk$set(cache=TRUE,
-                      message=FALSE, warning=FALSE,
-                      fig.path='figs/',
-                      cache.path = '_cache/',
+knitr::opts_chunk$set(fig.path='figs/',
+                      message=FALSE, warning=FALSE, cache=FALSE,
                       fig.process = function(x) {
                       x2 = sub('-\\d+([.][a-z]+)$', '\\1', x)
                       if (file.rename(x, x2)) x2 else x
@@ -61,7 +59,7 @@ Theories of political disagreement often envisage ideology as a single, latent d
 
 Not only you can have figures but you can also add footnotes [^one_footnote] in Rmarkdown. Here's another one.[^another_footnote] `r lorem::ipsum(1, avg_words_per_sentence = 20)`
 
-```{r, eval=TRUE, echo=FALSE, cache=FALSE, size="small", fig.cap="A Figure That Needs a Better Title", out.width="75%", fig.align="center", message=F, warning=F}
+```{r, eval=TRUE, echo=FALSE, size="small", fig.cap="A Figure That Needs a Better Title", out.width="75%", fig.align="center"}
 library(anesr)
 data(timeseries_2016)
 
@@ -105,7 +103,7 @@ By the way, did you notice that we are using real data from the American Nationa
 
 [^anes]: https://electionstudies.org/data-center/2016-time-series-study/
 
-```{r, eval=TRUE, echo=FALSE, cache=FALSE, size="small", fig.cap="Another Figure That Should Get a Better Title", out.width="75%", fig.align="center", message=F, warning=F}
+```{r, eval=TRUE, echo=FALSE, size="small", fig.cap="Another Figure That Needs a Better Title", out.width="75%", fig.align="center"}
 
 tmp_df <- timeseries_2016 %>%
   select(V161126, V161181, V161184, V161178) %>%
@@ -135,7 +133,7 @@ ggplot(tmp_df, aes(x=value, y=..prop.., group=key)) +
 
 Here are some variables that we could use to build interesting features. `r lorem::ipsum(1)`
 
-```{r, eval=TRUE, echo=FALSE, cache=FALSE, size="small", fig.cap="Another Figure That Should Get a Better Title", out.width="75%", fig.align="center", message=F, warning=F}
+```{r, eval=TRUE, echo=FALSE, size="small", fig.cap="Maybe Add a Title Here That Makes More Sense?", out.width="75%", fig.align="center"}
 
 tmp_df <- timeseries_2016 %>%
   select(V161031, V161086, V161087) %>%
@@ -154,10 +152,12 @@ tmp_df %>%
   ggplot(
     aes(x=as.numeric(ft_republican), y=as.numeric(ft_democrat), color=as.factor(vote_intent))
   ) +
-  geom_point() +
+  geom_jitter(shape=1, width=5, height=5, alpha=.66) +
   geom_smooth(se=FALSE, size=2, color="grey", alpha=.8) +
   ylab("Democrat Feeling Thermometer") +
   xlab("Republican Feeling Thermometer") +
+  ylim(c(0,100)) +
+  xlim(c(0,100)) +
   scale_color_brewer(
     limits=c("2", "1", "4", "3"),
     palette="Set1",
@@ -175,7 +175,7 @@ tmp_df %>%
 Well, here are some fitted models. Are these any good?
 `r lorem::ipsum(3, avg_words_per_sentence = 15)`
 
-```{r, echo=FALSE, eval=TRUE, tidy = TRUE, size="small", cache=FALSE, results="asis", out.width="75%", fig.align="center", message=F, warning=F}
+```{r, echo=FALSE, eval=TRUE, tidy = TRUE, size="small", results="asis", out.width="75%", fig.align="center"}
 
 library(stargazer)
 
@@ -239,17 +239,26 @@ stargazer(
 
 `r lorem::ipsum(1, avg_words_per_sentence = 20)`
 
+```{r, echo=FALSE, eval=TRUE}
+
+predictions <- predict(fit_1, tmp_df, type = 'response')
+conf_matrix <- table(tmp_df$trump_int, predictions> 0.5)
+accuracy <- sum(diag(conf_matrix)) / sum(conf_matrix)
+
+```
+
 # Application
+
 
 The first model as an accuracy of `r round(accuracy*100, 3)`%. Is it any good? Or is it bad? Why? `r lorem::ipsum(2, avg_words_per_sentence = 14)`
 
-```{r, eval=TRUE, echo=FALSE, cache=FALSE, size="small", fig.cap="What's wrong with this figure?", message=F, warning=F}
+```{r, eval=TRUE, echo=FALSE, size="small", fig.cap="What's wrong with this figure?"}
 
 plot_df <- tibble(trump_int = tmp_df$trump_int, predicted_prob = predict(fit_1, tmp_df, type="resp"))
 
 ggplot(plot_df, aes(x=predicted_prob, y=trump_int)) +
-  geom_jitter(width=0.025, height=.2, shape=1) +
-  geom_smooth(method="glm", method.args=list(family="binomial"), fullrange=TRUE, color="red") +
+  geom_jitter(width=0.025, height=.2, shape=1, alpha=.3) +
+  geom_smooth(method="glm", method.args=list(family="binomial"), fullrange=TRUE, color="red", alpha=.8) +
   ylab("Voting Intention for Trump") +
   scale_y_continuous(breaks=c(0,1)) +
   scale_x_continuous(breaks=c(0,1)) +
@@ -261,13 +270,7 @@ ggplot(plot_df, aes(x=predicted_prob, y=trump_int)) +
 
 # Conclusion and Discussion
 
-```{r, echo=FALSE, eval=TRUE, message=F, warning=F}
 
-predictions <- predict(fit_1, tmp_df, type = 'response')
-conf_matrix <- table(tmp_df$trump_int, predictions> 0.5)
-accuracy <- sum(diag(conf_matrix)) / sum(conf_matrix)
-
-```
 
 `r lorem::ipsum(5, avg_words_per_sentence = 16)`
 
