@@ -1,4 +1,4 @@
-# Challenge 0: The Warm Up!
+# Challenge 0: Warm Up!
 
 # Objective
 This challenge helps you understand the process of compiling documents and adding files on GitHub. This is how you will submit future assignments.
