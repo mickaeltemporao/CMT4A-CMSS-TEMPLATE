@@ -12,11 +12,12 @@ clone rprojet in rstudio
 1. In RStudio, start a new R Project by clicking the *Create a project* button: ![Create a project](../imgs/rstudio_proj.png?raw=true "Create a project")
 2. Select *"Version Control"* then *"Git"*.
 3. In *"Repository URL"*, paste the URL of your challenge GitHub repository (See this [**IMAGE**](https://www.howtogeek.com/wp-content/uploads/2019/12/Copy-repo-URL-to-clipboard.png.pagespeed.ce.OoaKTWf-H_.png)). It will be something like https://github.com/your_username/name-of-the-repo.git.
-5. Accept the default project directory which will be the same as the GitHub repo name.
-6. Choose where you want to save your files (this assignment's GitHub folder).
-7. Check the *"Open in new session”* box.
-8. Click “Create Project”.
+4. Accept the default project directory which will be the same as the GitHub repo name.
+5. Choose where you want to save the project on your computer.
+6. Click “Create Project”.
 
-You shoud find yourself in a new local RStudio Project with the contents of the GitHub that was created by GitHub (Bottom right part of RStudio).
+    - You should find yourself in a new local (on your computer) RStudio Project with the contents of the challenge folder that was created by GitHub. You should see the files at bottom right part of RStudio.
 
-##
+7. In the "Files" browser (bottom right), open the *"project" > "requirements.R"* file.
+    - The new file should appear open in the top left pane of RStudio.
+9. Source the file by clicking ![Source](../imgs/rstudio_source.png?raw=true "Source the contents of the active document")
