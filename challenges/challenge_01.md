@@ -25,6 +25,7 @@
     - **PRO TIP**: Render your file as soon as you've made changes that you believe might break your code. This will help you check that everything still works. It is an easy way to help you identify bugs that you might introduce are you're coding/writing script/documents.
 
 You will now start making changes to the `project.Rmd` file.
+
 8. Pick a better title for this document and change it.
 9. Set yourself as the author of the document.
 10. Change the institution to match your institution.
