@@ -1,7 +1,9 @@
 # Challenge 0: Warm Up!
 
-# Objective
-This challenge helps you understand the process of compiling documents and adding files on GitHub. This is how you will submit future assignments.
+# Objectives
+- Learn how to add files on GitHub.
+- Understand the process of compiling or rendering scripts or documents.
+- How to make assignment submissions and track changes.
 
 # Instructions
 1. Open RStudio.

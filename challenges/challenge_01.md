@@ -2,8 +2,11 @@
 Challenge definition [IN PROGRESS]! Do not complete!
 
 # Objective
-edit rmarkdown
+get familiar with RMarkdown files (`.Rmd`)
+understand how to render documents and source scripts.
+edit rmarkdown files and check the output
 clone rprojet in rstudio
+version control documents
 
 
 # Instructions
@@ -25,5 +28,7 @@ clone rprojet in rstudio
     - Once it's done, you can close the `requirements.R` file in RStudio.
 9. In the "Files" browser (bottom right), open the *"project" > "project.Rmd"* file.
     - The new file should appear open in the top left pane of RStudio.
-    - You can Render (![Knit the document](../imgs/rstudio_knit.png?raw=true "Knit the document")) the file to get familiar with the output. A PDF file should appear.
-10.
+    - Render the file by clicking (![Knit the document](../imgs/rstudio_knit.png?raw=true "Knit the document"))
+    - A PDF file should appear.
+    - Get familiar with this process, we will do this A LOT!
+10. In RStudio in the `project.Rmd`
