@@ -34,6 +34,4 @@ You're almost there! You will now start making changes directly to the `project.
 13. Change the title of the first figure.
 14. Change the text of one of footnotes in the document.
 15. Compile and upload the rendered PDF (`project.pdf`) and RMarkdown (`project.Rmd`) files to this assignments' GitHub repo.
-
-### You're done, good job!
-
+    - You're done, good job!
