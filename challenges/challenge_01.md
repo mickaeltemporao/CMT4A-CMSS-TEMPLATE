@@ -24,7 +24,7 @@
     - Get familiar with this process, we will do this A LOT!
     - **PRO TIP**: Render your file as soon as you've made changes that you believe might break your code. This will help you check that everything still works. It is an easy way to help you identify bugs that you might introduce are you're coding/writing script/documents.
 
-You will now start making changes to the `project.Rmd` file.
+You're almost there! You will now start making changes directly to the `project.Rmd` file.
 
 8. Pick a better title for this document and change it.
 9. Set yourself as the author of the document.
@@ -33,7 +33,7 @@ You will now start making changes to the `project.Rmd` file.
 12. Add a new sentence to the introduction.
 13. Change the title of the first figure.
 14. Change the text of one of footnotes in the document.
-15. Compile and upload the rendered PDF (`project.pdf`) and RMarkdown (`project.Rmd`) files to GitHub.
+15. Compile and upload the rendered PDF (`project.pdf`) and RMarkdown (`project.Rmd`) files to this assignments' GitHub repo.
 
-You're done, good Job!
+### You're done, good job!
 
