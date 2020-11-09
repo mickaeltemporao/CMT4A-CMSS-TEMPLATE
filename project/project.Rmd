@@ -28,6 +28,7 @@ header-includes:
 ```{r setup, include=FALSE}
 # Setup and Compiling Options
 set.seed(42)
+source("requirements.R")
 knitr::opts_chunk$set(fig.path='figs/',
                       message=FALSE, warning=FALSE, cache=FALSE,
                       fig.process = function(x) {
