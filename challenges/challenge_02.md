@@ -20,7 +20,7 @@
 
 ## The R Script
 
-**Describe what each line of R code does using comments.**
+**Inside your R Script you need to describe what each line of R code does using comments!**
 
 1. In the "Files" browser (bottom right), open the file located at *"src" > "misc.R"*.
 2. Create 3 numeric vector objects each containing 5 elements: 3 negative numbers and 2 positive numbers.
@@ -28,7 +28,7 @@
 4. Create a custom function named `negative_mean` that does the following:
     - The function takes a numeric vector as an input.
     - The function returns the mean of the negative numbers as the output.
-5. Create a for loop that prints the `negative_mean` of each element of your list object.
+5. Create a for loop that prints the `negative_mean` of each element in your list.
 
 ## The RMarkdown document
 1. In the "Files" browser (bottom right), open the `project.Rmd` file in *"project" > "project.Rmd"*.
