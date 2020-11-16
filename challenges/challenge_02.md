@@ -24,7 +24,7 @@
 
 1. In the "Files" browser (bottom right), open the file located at *"src" > "misc.R"*.
 2. Create 3 numeric vector objects each containing 5 elements: 3 negative numbers and 2 positive numbers.
-3. Create a list object that contains the 2 vectors created in step 2.
+3. Create a list object that contains the 3 vectors created in step 2.
 4. Create a custom function named `negative_mean` that does the following:
     - The function takes a numeric vector as an input.
     - The function returns the mean of the negative numbers as the output.
