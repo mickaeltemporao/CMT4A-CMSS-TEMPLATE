@@ -33,5 +33,8 @@ You're almost there! You will now start making changes directly to the `project.
 12. Add a new sentence to the introduction.
 13. Change the title of the first figure.
 14. Change the text of one of footnotes in the document.
-15. Compile and upload the rendered PDF (`project.pdf`) and RMarkdown (`project.Rmd`) files to this assignments' GitHub repo.
+15. Render your file  by clicking ![Knit the document](../imgs/rstudio_knit.png?raw=true "Knit the document").
+16. Upload the rendered PDF (`project.pdf`) and RMarkdown (`project.Rmd`) files to this assignments' GitHub repo.
+17. Add a message to your commit.
+18. Commit your changes.
     - You're done, good job!
