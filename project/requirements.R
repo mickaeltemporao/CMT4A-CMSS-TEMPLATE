@@ -9,7 +9,6 @@ cran_requirements <- c(
 
 github_requirements <- c(
   "gadenbuie/lorem",
-  "jamesmartherus/anesr"
 )
 
 # Create a data frame with installed packages
