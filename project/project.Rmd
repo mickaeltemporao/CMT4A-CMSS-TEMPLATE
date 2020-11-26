@@ -61,7 +61,7 @@ Not only you can have figures but you can also add footnotes [^one_footnote] in 
 
 ```{r, eval=TRUE, echo=FALSE, size="small", fig.cap="A Figure That Needs a Better Title", out.width="75%", fig.align="center"}
 library(tidyverse)
-load("../data/2016.rda")
+timeseries_2016 <- readRDS("../data/ts_2016.rds")
 
 timeseries_2016 %>%
   filter(between(V162034a, 1, 4)) %>%
