@@ -1,4 +1,4 @@
-# Challenge 2: R Basics
+# Challenge 2: Functioning Functions
 
 # Objective
 - Get familiar with built-in functions.
