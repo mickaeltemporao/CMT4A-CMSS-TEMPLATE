@@ -18,7 +18,6 @@
     - You should find yourself in a new local (on your computer) RStudio Project with the contents of the challenge folder that was created by GitHub.
     - You should see the files at bottom right part of RStudio.
 
-
 ## The Challenge
 
 **Do not forget to describe what each line of R code does using comments inside any code block or R script !**
@@ -30,41 +29,35 @@
 4. Add the scientific article's *BibTeX* entry from Google Scholar to the `references.bib` file (*"project" > "references.bib"*).
 5. Replace the first sentence of the `project.Rmd` file (*"project" > "project.Rmd"*) by a sentence referring to, summarizing, paraphrasing or quoting your scientific article.
     - This sentence needs to illustrate why your variable is important or might help to predict vote choice.
-6. Cite your scientific reference using the appropriate in-text citation (see the relevant section in the "project.Rmd" file.)
-7.
+6. Cite the scientific reference using an appropriate in-text citation
+    - Check the "Making citations" section of `project.Rmd` to learn how to do it.
+7. In `project.Rmd` file in *"project" > "project.Rmd"* locate the code block at line 60.
+    - The ANES 2016 data is loaded and put into
+8. In the "Files" browser (bottom right), open the R script located at *"src" > "challenge_03.R"*.
+    - There is already code loading the dataset for you into an object called `tb`
+10. In the R script add a new comment with the name of the first variable (first column) of the dataset stored in the `tb` object.
+10. In the R script create a new object containing the variable you identified in step 2.
+11. Filter out the missing data and save that in a new object.
+    - Use the codebook and R basic functions to know which values are missing values.
+12. Make a relevant figure to visualize your variable using `ggplot()`
+13. Change the x and y labels of your figure to something meaningful.
+14. Make sure this code works and save your file.
+15. In your `project.Rmd` file (*"project" > "references.bib"*), locate the empty code block in the introduction section.
+16. Copy all the contents the `challenge_03.R` R script into the empty codeblock.
+17. Add a relevant title to your figure by changing the `fig.cap` argument of the code block.
+18. Locate the code block of `A Figure That Needs a Better Title`.
+19. Identify the variable that we are visualizing in the codebook.
+20. Now that you know what this variable is, set the question description as its title.
 
-1. In the "Files" browser (bottom right), open the file located at *"src" > "misc.R"*.
-2. Create 3 numeric vector objects each containing 5 elements: 3 negative numbers and 2 positive numbers.
-3. Create a list object that contains the 3 vectors created in step 2.
-4. Create a custom function named `negative_mean` that does the following:
-    - The function takes a numeric vector as an input.
-    - The function returns the mean of the negative numbers as the output.
-5. Create a for loop that prints the `negative_mean` of each element in your list.
-
-## The RMarkdown document
-1. In the "Files" browser (bottom right), open the `project.Rmd` file in *"project" > "project.Rmd"*.
-2. Add a new sentence to the beginning of the document with embedded inline code that uses a built-in function.
-3. Add a new code chunk that uses a custom function.
-4. Change the title of the document to Challenge 2 and set yourself as the author.
-5. Render the document as a PDF.
+You're done! Hooray! Oh... Right, we need to upload our files to GitHub.
 
 ## The Submission
 
-You will need to submit 3 files for this assignment.
+You need to submit 3 files for this assignment.
 
-- The R script: `misc.R`
-- The Rmarkdown document: `project.R`
+- The R script: `challenge_03.R`
+- The Rmarkdown document: `project.Rmd`
 - The rendered Rmakrdown document: `project.pdf`
 
-Did you know that you can use RStudio to directly commit and submit your files to GitHub?
+Upload the 3 files to GitHub and add a commit message!
 
-- *Try figuring out how to do it!*
-
-If you don't figure it out, manually upload the 3 files to GitHub and add a commit message.
-
-
-What's the first variable in the dataset?
-
-create variables
-
-make a plot
