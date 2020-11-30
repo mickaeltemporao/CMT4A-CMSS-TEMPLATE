@@ -50,4 +50,3 @@ Did you know that you can use RStudio to directly commit and submit your files t
 - *Try figuring out how to do it!*
 
 If you don't figure it out, manually upload the 3 files to GitHub and add a commit message.
-
