@@ -1,4 +1,4 @@
-# Challenge 2: R Basics
+# Challenge 3: The Explorer
 
 # Objective
 - Get familiar with built-in functions.
