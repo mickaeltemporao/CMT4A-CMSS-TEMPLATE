@@ -22,12 +22,13 @@ output:
     template: latex-template.tex
 header-includes:
   -  \usepackage{hyperref}
-# spacing: double
 ---
 
 ```{r setup, include=FALSE}
 # Setup and Compiling Options
 set.seed(42)
+library(tidyverse)
+
 source("requirements.R")
 knitr::opts_chunk$set(fig.path='figs/',
                       message=FALSE, warning=FALSE, cache=FALSE,
@@ -35,6 +36,10 @@ knitr::opts_chunk$set(fig.path='figs/',
                       x2 = sub('-\\d+([.][a-z]+)$', '\\1', x)
                       if (file.rename(x, x2)) x2 else x
                       })
+
+# Loading the data
+timeseries_2016 <- readRDS("../data/ts_2016.rds")
+
 ```
 
 
@@ -42,17 +47,24 @@ knitr::opts_chunk$set(fig.path='figs/',
 
 Theories of political disagreement often envisage ideology as a single, latent dimension that structures politics on a continuum between left and right [@downs1957economic]. `r lorem::ipsum(2, avg_words_per_sentence = 15)`
 
-## How do we make citations and automate reference lists in RMarkdown documents ?
+## Making citations and reference lists in RMarkdown documents
 
 ```{markdown}
 - Add your reference(s) to a `refernces.bib` file.
-- Find the bib key in your `refernces.bib` file.
-- Put an @ before the bib key (e.g. @downs1957economic)
-- @downs1957economic creates an in-text citation (e.g. Downs (1957) says...)
-- [@downs1957economic] creates a parenthetical citation (Downs, 1957)
+- Find the key of your article in your `refernces.bib` file (e.g. downs1957economic).
+- Put an @ before the key (e.g. @downs1957economic)
+- Use @downs1957economic for author's name part of the narrative (e.g. Downs (1957) found that ...)
+- Use [@downs1957economic] for author's name in parentheses (eg. Ideological positions summarize ... (Downs, 1957))
 ```
 
-`r lorem::ipsum(2, avg_words_per_sentence = 15)`
+```{r, eval=TRUE, echo=FALSE, size="small", fig.cap="Your Challenge 3 Figure Needs to be Changed...", out.width="75%", fig.align="center"}
+
+# Empty code bloc for challenge 3 ==============================================
+
+
+
+```
+
 
 
 ## Existing work
@@ -60,8 +72,6 @@ Theories of political disagreement often envisage ideology as a single, latent d
 Not only you can have figures but you can also add footnotes [^one_footnote] in Rmarkdown. Here's another one.[^another_footnote] `r lorem::ipsum(1, avg_words_per_sentence = 20)`
 
 ```{r, eval=TRUE, echo=FALSE, size="small", fig.cap="A Figure That Needs a Better Title", out.width="75%", fig.align="center"}
-library(tidyverse)
-timeseries_2016 <- readRDS("../data/ts_2016.rds")
 
 timeseries_2016 %>%
   filter(between(V162034a, 1, 4)) %>%

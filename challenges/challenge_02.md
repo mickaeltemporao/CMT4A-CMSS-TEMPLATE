@@ -42,7 +42,7 @@
 You will need to submit 3 files for this assignment.
 
 - The R script: `misc.R`
-- The Rmarkdown document: `project.R`
+- The Rmarkdown document: `project.Rmd`
 - The rendered Rmakrdown document: `project.pdf`
 
 Did you know that you can use RStudio to directly commit and submit your files to GitHub?
