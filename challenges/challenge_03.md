@@ -8,6 +8,7 @@
 
 # Instructions
 
+
 ## The Setup
 1. In RStudio, start a new R Project by clicking the *Create a project* button: ![Create a project](../imgs/rstudio_proj.png?raw=true "Create a project")
 2. Select *"Version Control"* then *"Git"*.
@@ -18,6 +19,7 @@
 6. Click "Create Project".
     - You should find yourself in a new local (on your computer) RStudio Project with the contents of the challenge folder that was created by GitHub.
     - You should see the files at bottom right part of RStudio.
+
 
 ## The Challenge
 
@@ -52,6 +54,7 @@
 
 You're done! Hooray! Oh... Right, we need to upload our files to GitHub.
 
+
 ## The Submission
 
 You need to submit 3 files for this assignment.
@@ -61,4 +64,3 @@ You need to submit 3 files for this assignment.
 - The rendered Rmakrdown document: `project.pdf`
 
 Upload the 3 files to GitHub and add a commit message!
-
