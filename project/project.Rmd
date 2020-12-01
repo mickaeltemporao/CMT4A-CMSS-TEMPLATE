@@ -50,11 +50,15 @@ Theories of political disagreement often envisage ideology as a single, latent d
 ## Making citations and reference lists in RMarkdown documents
 
 ```{markdown}
-- Add your reference(s) to a `refernces.bib` file.
-- Find the key of your article in your `refernces.bib` file (e.g. downs1957economic).
-- Put an @ before the key (e.g. @downs1957economic)
-- Use @downs1957economic for author's name part of the narrative (e.g. Downs (1957) found that ...)
-- Use [@downs1957economic] for author's name in parentheses (eg. Ideological positions summarize ... (Downs, 1957))
+- Add your BibTeX reference(s) to a `references.bib` file.
+- Find the key of your article in your `refernces.bib` file
+    e.g. downs1957economic
+- To cite put an @ before the key
+    e.g. @downs1957economic
+- Use @downs1957economic to cite the author's name as part of the narrative
+    e.g. Downs (1957) found that ...
+- Use [@downs1957economic] to cite the author's name in parentheses
+    eg. An ideological position summarizes ... (Downs, 1957).
 ```
 
 ```{r, eval=TRUE, echo=FALSE, size="small", fig.cap="Your Challenge 3 Figure Needs to be Changed...", out.width="75%", fig.align="center"}
@@ -278,17 +282,10 @@ ggplot(plot_df, aes(x=predicted_prob, y=trump_int)) +
 
 `r lorem::ipsum(1, avg_words_per_sentence = 15)`
 
+
 # Conclusion and Discussion
-
-
-
 `r lorem::ipsum(5, avg_words_per_sentence = 16)`
 
-<!--
+
 # References
-\setlength{\parindent}{-0.2in}
-\setlength{\leftskip}{0.2in}
-\setlength{\parskip}{8pt}
-\vspace*{-0.2in}
-\noindent
--->
+

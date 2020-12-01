@@ -1,9 +1,10 @@
 # Challenge 3: The Explorer
 
-# Objective
-- Get familiar with built-in functions.
-- Create a custom function.
-- Embed code in a `.Rmd` document.
+# Objectives
+- Use common data exploration and visualization functions.
+- Create and automate bibliographies in a scientific report.
+- Report variables of interest in a scientific report.
+
 
 # Instructions
 
