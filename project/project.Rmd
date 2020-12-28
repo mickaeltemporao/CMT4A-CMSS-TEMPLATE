@@ -1,5 +1,5 @@
 ---
-title: "An strange article about a template with a very bad title"
+title: "A strange article about a template with a very bad title"
 author:
 - name: Jane Doe
   affiliation: Some University
@@ -25,21 +25,33 @@ header-includes:
 ---
 
 ```{r setup, include=FALSE}
-# Setup and Compiling Options
-set.seed(42)
-library(tidyverse)
+# This is a code block that will not be displayed in the rendered document.
 
+## - Your rendered document doesn't start here.
+## - The rendered document starts below the `# Introduction` line.
+
+## In this block we are setting parameters and installing and loading libraries.
+
+# Setting the seed for reproducibility
+set.seed(42)
+
+# Installing requirements
 source("requirements.R")
+
+# Loading the required libraries
+library(tidyverse)
+library(stargazer)
+
+# Loading the data
+timeseries_2016 <- readRDS("../data/ts_2016.rds")
+
+# Adjusting figure captions
 knitr::opts_chunk$set(fig.path='figs/',
                       message=FALSE, warning=FALSE, cache=FALSE,
                       fig.process = function(x) {
                       x2 = sub('-\\d+([.][a-z]+)$', '\\1', x)
                       if (file.rename(x, x2)) x2 else x
                       })
-
-# Loading the data
-timeseries_2016 <- readRDS("../data/ts_2016.rds")
-
 ```
 
 
@@ -191,7 +203,6 @@ Well, here are some fitted models. Are these any good?
 
 ```{r, echo=FALSE, eval=TRUE, tidy = TRUE, size="small", results="asis", out.width="75%", fig.align="center"}
 
-library(stargazer)
 
 tmp_df <- timeseries_2016 %>%
   select(
