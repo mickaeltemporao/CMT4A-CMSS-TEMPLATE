@@ -24,7 +24,6 @@
 
 ## The Challenge
 
-## The RMarkdown document
 1. In the "Files" browser (bottom right), open the `challenge_04.Rmd` file in *"project" > "challenge_04.Rmd"*.
 2. Start by "knitting" this document (html or pdf).
 3. Read and follow the instructions from the rendered document.
