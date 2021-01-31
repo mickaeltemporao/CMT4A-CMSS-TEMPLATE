@@ -1,10 +1,8 @@
 # Challenge 4: The Analyst
 
 
-# Objective
-- Summarise data
-- Understand figures
-- Derive insights figures
+# Learning objective
+- Derive insights from data
 
 
 # Instructions
@@ -27,6 +25,7 @@
 1. In the "Files" browser (bottom right), open the `challenge_04.Rmd` file in *"project" > "challenge_04.Rmd"*.
 2. Start by "knitting" this document (html or pdf).
 3. Read and follow the instructions from the rendered document.
+    - You can write in English or French. As you know, I do not penalize for any grammar mistakes. You should see this as an opportunity to practice and improve your English skills.
 4. Don't forget to replace your name in the `challenge_04.Rmd` file before you upload files to GitHub.
 
 
