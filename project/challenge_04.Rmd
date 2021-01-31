@@ -1,0 +1,47 @@
+---
+title: "Challenge 4 - The Analyst"
+author: "Your Name Here"
+output: html_document
+---
+
+### Context
+You are a young social scientist working for the New York Times during the 2016 American National Election. You were provided with a visualization showing the distribution of ideological self-placement (V161126) by region (V163003) from a recent pre-election survey (ANES 2016). Your task, is to write a brief analysis of what you see on this picture (~5 to 10 sentences is enough). Comment on what the red line is and what it tells us about the different US Regions. Assuming two major candidates (H. Clinton and D. Trump), who do you expect would be the party getting the most votes within each region based on solely on ideology? 
+
+If you are not familiar with electoral behaviour literature,liberals tend to vote for demotratic candidates and conservatives tend to vote for republican candidates (H. Clinton is the Democratic candidate and D. Trump is the Republican candidate).
+
+```{r echo=FALSE, message=FALSE}
+library(tidyverse)
+# A clean dataset is loaded for you the `tb` object
+# This dataset is generated using the "src/make_data.R" file.
+tb <- readRDS("../data/clean_2016.rds")
+
+# Grouping and summarising
+ideology_means <- tb %>% group_by(region) %>% summarise(avg = mean(ideology))
+
+# Figure : Distribution of Ideology per Region 
+ggplot(tb, aes(x = ideology, y = ..prop.., group=region)) +
+  geom_bar() +
+  facet_wrap(~region) +
+  geom_vline(
+    data=ideology_means,
+    aes(xintercept=avg), color="red", linetype=2
+    ) +
+  geom_text(
+    data=ideology_means,
+    aes(x=avg, y=0.25, label=round(avg, 2)), color="red", hjust=-0.25
+    ) +
+  scale_x_discrete(
+    limits=c("Extrm. Lib", "", "", "Moderate", "", "", "Extrm. Con.")
+  ) +
+  labs(
+    title = "Distribution of Ideology per Region",
+    x = "Ideological Self-placement",
+    y = "Proportion"
+  ) +
+  theme_bw()
+
+```
+
+## Report
+
+Write your analysis here and delete this and the following sentence when you are done. Do not forget to upload your "knitted" files to GitHub!

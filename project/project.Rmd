@@ -78,9 +78,7 @@ Theories of political disagreement often envisage ideology as a single, latent d
 # Empty code bloc for challenge 3 ==============================================
 
 
-
 ```
-
 
 
 ## Existing work
