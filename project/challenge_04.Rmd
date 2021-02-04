@@ -5,7 +5,7 @@ output: html_document
 ---
 
 ### Context
-You are a young social scientist working for the New York Times during the 2016 American National Election. You were provided with a visualization showing the distribution of ideological self-placement (V161126) by region (V163003) from a recent pre-election survey (ANES 2016). Your task, is to write a brief analysis of what you see on this picture (~5 to 10 sentences is enough). Comment on what the red line is and what it tells us about the different US Regions. Assuming two major candidates (H. Clinton and D. Trump), who do you expect would be the party getting the most votes within each region based on solely on ideology? 
+You are a young social scientist working for the New York Times during the 2016 American National Election. You were provided with a visualization showing the distribution of ideological self-placement (V161126) by region (V163003) from a recent pre-election survey (ANES 2016). Your task, is to write a brief analysis of what you see on this picture (~5 to 10 sentences is plenty). Comment on the red line, and what it can tell us about the different US Regions. Assuming two major candidates (H. Clinton and D. Trump), who do you expect would be the party getting the most votes within each region based on solely on ideology? 
 
 If you are not familiar with electoral behaviour literature,liberals tend to vote for demotratic candidates and conservatives tend to vote for republican candidates (H. Clinton is the Democratic candidate and D. Trump is the Republican candidate).
 
@@ -38,7 +38,7 @@ ggplot(tb, aes(x = ideology, y = ..prop.., group=region)) +
     x = "Ideological Self-placement",
     y = "Proportion"
   ) +
-  theme_bw()
+  theme_light()
 
 ```
 

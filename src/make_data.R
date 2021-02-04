@@ -2,8 +2,12 @@ library(tidyverse)
 library(lubridate)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
-# Creating a clean dataset
-readRDS("../data/ts_2016.rds") %>%
+# Raw Data URL
+data_url <- "https://github.com/mickaeltemporao/CMT4A-CMSS-TEMPLATE/raw/main/data/ts_2016.rds"
+
+
+# Loading a raw dataset, transforming it, and saving it into a clean dataset
+readRDS(url(data_url,"rb")) %>%
   select(
     V164002,   # date
     V163003,   # region
@@ -53,4 +57,5 @@ readRDS("../data/ts_2016.rds") %>%
     pres_appr  = factor(pres_appr, labels = c("Approve", "Disapprove")),
     sexism     = factor(sexism, labels = c("Better", "Worse", "Makes no difference")),
     latino     = factor(latino, labels = c("Yes", "No")),
-  ) %>% saveRDS("../data/clean_2016.rds")
+  ) %>%
+  saveRDS("../data/clean_2016.rds")
