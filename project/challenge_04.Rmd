@@ -1,11 +1,10 @@
 ---
 title: "Challenge 4 - The Analyst"
 author: "Your Name Here"
-output: html_document
 ---
 
 ### Context
-You are a young social scientist working for the New York Times during the 2016 American National Election. You were provided with a visualization showing the distribution of ideological self-placement (V161126) by region (V163003) from a recent pre-election survey (ANES 2016). Your task, is to write a brief analysis of what you see on this picture (~5 to 10 sentences is plenty). Comment on the red line, and what it can tell us about the different US Regions. Assuming two major candidates (H. Clinton and D. Trump), who do you expect would be the party getting the most votes within each region based on solely on ideology? 
+You are a young social scientist working for the New York Times during the 2016 American National Election. You were provided with a visualization showing the distribution of ideological self-placement (V161126) by region (V163003) from a recent pre-election survey (ANES 2016). Your task, is to write a brief analysis of what you see on this picture (~5 to 10 sentences is plenty). Comment on the red line, and what it can tell us about the different US Regions. Assuming two major candidates (H. Clinton and D. Trump), who do you expect would be the party getting the most votes within each region based on solely on ideology?
 
 If you are not familiar with electoral behaviour literature,liberals tend to vote for demotratic candidates and conservatives tend to vote for republican candidates (H. Clinton is the Democratic candidate and D. Trump is the Republican candidate).
 
@@ -15,18 +14,21 @@ library(tidyverse)
 # This dataset is generated using the "src/make_data.R" file.
 tb <- readRDS("../data/clean_2016.rds")
 
-# Grouping and summarising
+# Summarising and saving the average ideology by region
 ideology_means <- tb %>% group_by(region) %>% summarise(avg = mean(ideology))
 
-# Figure : Distribution of Ideology per Region 
+# Figure : Distribution of Ideology per Region
 ggplot(tb, aes(x = ideology, y = ..prop.., group=region)) +
   geom_bar() +
   facet_wrap(~region) +
   geom_vline(
+    # Note that we are using `ideology_means` summary here.
     data=ideology_means,
     aes(xintercept=avg), color="red", linetype=2
     ) +
   geom_text(
+    # Note that we are also using `ideology_means` summary here
+    # This allows us to display the average values on the figure.
     data=ideology_means,
     aes(x=avg, y=0.25, label=round(avg, 2)), color="red", hjust=-0.25
     ) +

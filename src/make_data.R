@@ -1,6 +1,10 @@
+# This file generates and saves a `clean_2016.rds` on your computer.
+
+# Loading required libraries and setting the working directory
 library(tidyverse)
 library(lubridate)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+
 
 # Raw Data URL
 data_url <- "https://github.com/mickaeltemporao/CMT4A-CMSS-TEMPLATE/raw/main/data/ts_2016.rds"
@@ -58,4 +62,4 @@ readRDS(url(data_url,"rb")) %>%
     sexism     = factor(sexism, labels = c("Better", "Worse", "Makes no difference")),
     latino     = factor(latino, labels = c("Yes", "No")),
   ) %>%
-  saveRDS("../data/clean_2016.rds")
+  saveRDS("clean_2016.rds")
