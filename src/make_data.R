@@ -16,6 +16,9 @@ readRDS(url(data_url,"rb")) %>%
     V164002,   # date
     V163003,   # region
     V161267,   # age
+    V161342,   # gender
+    V161361x,  # income
+    V161270,   # education
     V161031,   # vote intention
     V161155,   # party identification
     V161126,   # ideology
@@ -30,6 +33,9 @@ readRDS(url(data_url,"rb")) %>%
     "date"        = "V164002",
     "region"      = "V163003",
     "age"         = "V161267",
+    "gender"      = "V161342",
+    "income"      = "V161361x",
+    "education"   = "V161270",
     "voting_int"  = "V161031",
     "party_id"    = "V161155",
     "ideology"    = "V161126",
@@ -42,6 +48,9 @@ readRDS(url(data_url,"rb")) %>%
   ) %>%
   filter(
     age >= 18,
+    between(gender, 1, 3),
+    between(income, 1, 16),
+    education > 0,
     between(voting_int, 1, 4),
     between(party_id, 1, 3),
     between(ideology, 1, 7),
@@ -54,6 +63,7 @@ readRDS(url(data_url,"rb")) %>%
   ) %>%
   mutate(
     date       = as_date(date),
+    gender     = factor(gender,  labels = c("Male", "Female", "Other")),
     region     = factor(region,  labels = c("Northeast", "Midwest", "South", "West")),
     voting_int = factor(voting_int, labels = c("H. Clinton", "D. Trump", "G. Johnson", "J. Stein")),
     party_id   = factor(party_id, labels = c("Democrat", "Republican", "Independent")),
