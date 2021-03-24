@@ -1,4 +1,4 @@
-[#](#) Challenge 3: The Explorer
+# Challenge 3: The Explorer
 
 # Objectives
 - Use common data exploration and visualization functions.
