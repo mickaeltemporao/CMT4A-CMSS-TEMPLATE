@@ -21,7 +21,6 @@
 1. In the "Files" browser (bottom right), open the `challenge_05.Rmd` file in *"project" > "challenge_05.Rmd"*.
 2. Start by "knitting" this document (html or pdf).
     - The document should "knit" without errors. If you have an error here, send a message on Slack!
-4. Read and follow the instructions from the rendered document.
-    - You can write in English or French. As you know, I do not penalize for any grammar mistakes. You should see this as an opportunity to practice and improve your English skills.
-5. Don't forget to replace your name in the `challenge_05.Rmd` file before you upload files to GitHub.
+3. Read and follow the instructions from the rendered document.
+    - Don't forget to replace your name in the `challenge_05.Rmd` file before you upload files to GitHub.
 
