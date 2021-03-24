@@ -1,0 +1,90 @@
+---
+title: "Idéologie Américaine : le continuum libéral-conservateur aux États-Unis en 2016"
+subtitle: "Gallop 2021 - Computational Methods for Social Science"
+author: "Votre Nom Ici"
+date: "13/03/2021"
+bibliography: references.bib
+output: pdf_document
+---
+
+
+# Introduction
+Vous êtes un jeune *Data Scientist* chargé de modéliser le positionnement idéologique américain en 2016. Votre objectif est d'identifier des variables pertinentes permettant d'expliquer la variation de l'idéologie (V161126) parmi les Américains en 2016.
+
+Pour vous aider dans cette tâche, vous avez reçu un script (`galop_2021.Rmd`) contenant du code vous permettant d'accéder à un sous-ensemble de données de l'ANES 2016[^1] déjà préparées[^2]. Vous avez également reçu un script contenant des références bibliographiques (`references.bib`) afin de vous aider à justifier théoriquement vos choix de variables. N'oubliez pas de déposer le rendu final au format PDF sur Moodle. Vous devez aussi déposer le fichier `galop_2021.Rmd` et le PDF final sur GitHub une fois le galop réalisé.
+
+[^1]: Le codebook de l'ANES: [https://electionstudies.org/anes_timeseries_2016_userguidecodebook/](https://electionstudies.org/anes_timeseries_2016_userguidecodebook/)
+[^2]: Le code qui a permis de préparer les données: [https://github.com/mickaeltemporao/CMT4A-CMSS-TEMPLATE/blob/main/src/make_data.R](https://github.com/mickaeltemporao/CMT4A-CMSS-TEMPLATE/blob/main/src/make_data.R)
+
+
+# Données
+
+Le code de cette section est volontairement caché dans le rendu pdf/html. Cependant, lorsque vous regardez la structure du script `galop_2021.Rmd`, sous ce paragraphe, vous devriez apercevoir un bloc de code qui télécharge les données préparées. N'oubliez pas que vous pouvez à tout moment mettre votre curseur dans n'importe quel bloc de code pour l'exécuter ligne par ligne et voir ce qu'il s'y passe. Les données se trouvent dans l'objet `tb` et la variable que vous tentez d'expliquer, votre variable dépendante, est la variable `ideology`. Vous avez 13 autres variables pour vous aider.
+
+```{r echo=FALSE, message=FALSE}
+# Ceci est le bloc de code qui télécharge les données dans un abject appelé `tb`.
+library(tidyverse)
+
+data_url <- "https://github.com/mickaeltemporao/CMT4A-CMSS-TEMPLATE/raw/main/data/clean_2016.rds"
+tb <- readRDS(url(data_url,"rb"))
+
+
+# Vous utiliser du code ci-dessous pour vous familiariser avec les donnés. Par example:
+head(tb)
+
+```
+
+Une fois que vous avez pris connaissance du code, votre objectif est de 1) sélectionner 2 variables qui vous semblent pertinentes pour expliquer l'idéologie, 2) de créer 2 graphiques représentant ces variables et 3) décrire brièvement chacun de ces graphiques. Vous devez justifier chacun de vos choix théoriquement en vous servant des citations proposées dans le fichier `references.bib`. Vous pouvez vous limiter à une phrase et une citation par variable. Vous pouvez vous servir du code pour le graphique de l'idéologie pour créer vos deux autres graphiques. Vous trouverez ci-dessous un exemple pour l'idéologie.
+
+ L'idéologie reste un des concepts les plus étudiés et débattus dans la recherche en opinion publique et en comportement politique [@jost2006end; @ellis2012ideology]. Dans le contexte américain, l'idéologie est souvent résumée à une seule dimension allant de libéral à conservateur [@downs1957economic]. Cependant, la signification de ces termes peut varier d'un individu à l'autre et d'une année à l'autre [@jessee2012ideology]. Ce qui nous amène à nous questionner sur les variables permettant d'expliquer la position idéologique des citoyens Américains en 2016.
+
+
+```{r}
+# Vous pouvez dupliquer ce bloc de code pour créer vos graphiques.
+
+ggplot(tb, aes(x = ideology)) +
+  geom_bar()
+```
+
+Dans ce graphique, la variable idéologique est codée de 1 à 7. Un étant extrêmement libéral et sept extrêmement conservateur. La classe modale, celle  dont l'effectif est le plus élevé, est la classe  4 (modéré). Il semblerait y avoir un léger biais vers les conservateurs.
+
+Ajoutez vos deux graphiques, justifications théoriques et vos descriptions ci-dessous.
+
+# Modèle
+
+Votre objectif est ici de créer un modèle linéaire utilisant les variables que vous avez présentées dans la section "Données". Vous devez ajuster la formule dans le bloc de code ci-dessous afin de créer votre modèle permettant d'expliquer l'idéologie.
+
+Vous trouverez ci-dessous un exemple utilisant la variable `region` pour expliquer l'idéologie. Ce choix n'a pas été justifié théoriquement au préalable et vous pouvez le supprimer lorsque vous avez identifié vos variables.
+
+```{r}
+# Vous remplacez `region` par une autre variable.
+# Ajoutez un signe "+" après `region` pour ajouter d'autres variables au modèle.
+
+my_model <- lm(ideology ~ region, data = tb)
+```
+
+Ci-dessous vous trouvez le résultat du modèle dans un tableau de régression. Ici, vous n'avez plus besoin de modifier de code. Le tableau est généré automatiquement pour vous. Vous devez cependant regarder le document pdf/html compilé (`knit`) pour pouvoir l'interpréter. Souvenez-vous, nous souhaitons porter particulièrement attention à trois éléments:
+
+1. Est-ce que ces effets sont significatifs (*)?
+2. Quelle est la direction et la taille des effets (+/-)?
+3. Quel est le pourcentage de variance expliqué par le modèle ($R^2$)?
+
+
+```{r, echo=FALSE, eval=TRUE, tidy = TRUE, size="small", results="asis"}
+# NE MODIFIEZ PAS CE BLOC DE CODE!
+stargazer::stargazer(
+  my_model, title="Régression Linéaire", header=FALSE, single.row = TRUE,
+  omit.stat=c("adj.rsq","ser","f"), star.char = c("*"),
+  star.cutoffs = c(0.05), notes.append = FALSE, notes = "*p<0.05"
+)
+# NE MODIFIEZ PAS CE BLOC DE CODE!
+```
+
+Ajoutez votre interprétation du modèle ici. Par exemple, seule `regionSouth` semble avoir un effet statistiquement significatif. Une augmentation d'une unité dans la variable `regionSouth` se traduit par une augmentation de 0.437 unités de la variable `ideology`. Cependant, le modèle ne semble expliquer qu'une fine partie (1.7%) de la variation de l'idéologie.
+
+
+Lorsque vous avez terminé, n'oubliez pas de compiler `knit` une dernière fois et de déposer le fichier `.Rmd` et `.pdf` dans le dossier GitHub et de déposer le `.pdf` sur Moodle.
+
+
+## Bibliographie
+

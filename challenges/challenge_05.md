@@ -1,4 +1,4 @@
-# Challenge 5: The Social Scientist
+# Challenge 5: The Scientist
 
 
 # Learning objective
